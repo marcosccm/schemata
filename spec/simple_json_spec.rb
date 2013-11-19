@@ -7,7 +7,8 @@ module Schemata
       {
         "id" => 1,
         "name" => "marcos",
-        "price" => 2.0
+        "price" => 2.0,
+        "items" => [1,2]
       }.to_json
     end
 
@@ -25,6 +26,10 @@ module Schemata
           },
           "price" => {
             "type" => "number",
+            "required" => true
+          },
+          "items" => {
+            "type" => "array",
             "required" => true
           }
         }

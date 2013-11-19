@@ -31,7 +31,8 @@ module Schemata
       { 
         Fixnum => "integer",
         String => "string",
-        Float => "number"
+        Float => "number",
+        Array => "array"
       }
     end
   end
