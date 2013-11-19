@@ -19,7 +19,12 @@ module Schemata
     end
 
     def entity_content(key, value)
-      { key => { "type" => type_table[value.class] } }
+      {
+        key => {
+          "type" => type_table[value.class],
+          "required" => true
+        }
+      }
     end
 
     def type_table

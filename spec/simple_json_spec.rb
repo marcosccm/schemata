@@ -14,8 +14,14 @@ module Schemata
       {
         "type" => "object",
         "properties" => {
-          "id" => { "type" => "integer" },
-          "name" => { "type" => "string" }
+          "id" => {
+            "type" => "integer",
+            "required" => true
+          },
+          "name" => {
+            "type" => "string",
+            "required" => true
+          }
         }
       }.to_json
     end
