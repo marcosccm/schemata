@@ -6,7 +6,8 @@ module Schemata
     let(:simple_json) do
       {
         "id" => 1,
-        "name" => "marcos"
+        "name" => "marcos",
+        "price" => 2.0
       }.to_json
     end
 
@@ -20,6 +21,10 @@ module Schemata
           },
           "name" => {
             "type" => "string",
+            "required" => true
+          },
+          "price" => {
+            "type" => "number",
             "required" => true
           }
         }

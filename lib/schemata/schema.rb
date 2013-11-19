@@ -21,7 +21,7 @@ module Schemata
     def entity_content(key, value)
       {
         key => {
-          "type" => type_table[value.class],
+          "type" => type_table.fetch(value.class),
           "required" => true
         }
       }
@@ -30,7 +30,8 @@ module Schemata
     def type_table
       { 
         Fixnum => "integer",
-        String => "string"
+        String => "string",
+        Float => "number"
       }
     end
   end
