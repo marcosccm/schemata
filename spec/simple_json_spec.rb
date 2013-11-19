@@ -30,7 +30,13 @@ module Schemata
           },
           "items" => {
             "type" => "array",
-            "required" => true
+            "required" => true,
+            "minItems" => 1,
+            "uniqueItems" => true,
+            "items" => {
+              "type" => "integer",
+              "required" => true
+            }
           }
         }
       }.to_json
