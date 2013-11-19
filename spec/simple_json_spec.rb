@@ -15,6 +15,7 @@ module Schemata
     let(:simple_schema) do
       {
         "type" => "object",
+        "required" => true,
         "properties" => {
           "id" => {
             "type" => "integer",

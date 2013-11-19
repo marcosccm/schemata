@@ -11,13 +11,7 @@ module Schemata
     end
 
     def generate
-      { "type" => "object" }.merge("properties" =>  entity_properties).to_json
-    end
-
-    def entity_properties
-      json.collect do |key, value|
-        { key => Property.for(value) }
-      end.reduce(:merge)
+      Property.for(json).to_json
     end
   end
 
@@ -31,8 +25,25 @@ module Schemata
         Fixnum => IntegerProperty,
         String => StringProperty,
         Float => NumberProperty,
-        Array => ArrayProperty
+        Array => ArrayProperty,
+        Hash => ObjectProperty
       }
+    end
+  end
+
+  class ObjectProperty < Property
+    def contents
+      {
+        "type" => "object",
+        "required" => true,
+        "properties" => properties
+      }
+    end
+
+    def properties
+      value.collect do |key, value|
+        { key => Property.for(value) }
+      end.reduce(:merge)
     end
   end
 
