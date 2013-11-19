@@ -15,33 +15,54 @@ module Schemata
     end
 
     def entity_properties
-      json.collect { |key, value| Property.new(key, value).contents }.reduce(:merge)
+      json.collect { |key, value| Property.for(key, value).contents }.reduce(:merge)
+    end
+  end
+
+  class Property < Struct.new(:key, :value)
+    def self.for(key, value)
+      table.fetch(value.class).new(key, value)
     end
 
-    class Type
-      def self.for(key)
-        table.fetch(key)
-      end
-
-      def self.table
-        {
-          Fixnum => "integer",
-          String => "string",
-          Float => "number",
-          Array => "array"
-        }
-      end
+    def self.table
+      {
+        Fixnum => IntegerProperty,
+        String => StringProperty,
+        Float => NumberProperty,
+        Array => ArrayProperty
+      }
     end
+  end
 
-    class Property < Struct.new(:key, :value)
-      def contents
-        {
-          key => {
-            "type" => Type.for(value.class),
-            "required" => true
-          }
-        }
-      end
+  class ArrayProperty < Property
+    def contents
+      {
+        key => { "type" => "array", "required" => true }
+      }
+    end
+  end
+
+  class StringProperty < Property
+    def contents
+      {
+        key => { "type" => "string", "required" => true }
+      }
+    end
+  end
+
+  class IntegerProperty < Property
+    def contents
+      {
+        key => { "type" => "integer", "required" => true }
+      }
+    end
+  end
+
+  class NumberProperty < Property
+    def contents
+      {
+        key => { "type" => "number", "required" => true }
+      }
     end
   end
 end
