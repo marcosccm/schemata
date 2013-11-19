@@ -8,7 +8,8 @@ module Schemata
         "id" => 1,
         "name" => "marcos",
         "price" => 2.0,
-        "items" => [1,2]
+        "items" => [1,2],
+        "priority" => false
       }.to_json
     end
 
@@ -38,6 +39,10 @@ module Schemata
               "type" => "integer",
               "required" => true
             }
+          },
+          "priority" => {
+            "type" => "boolean",
+            "required" => true
           }
         }
       }.to_json

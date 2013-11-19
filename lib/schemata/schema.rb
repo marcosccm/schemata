@@ -26,7 +26,9 @@ module Schemata
         String => StringProperty,
         Float => NumberProperty,
         Array => ArrayProperty,
-        Hash => ObjectProperty
+        Hash => ObjectProperty,
+        TrueClass => BooleanProperty,
+        FalseClass => BooleanProperty
       }
     end
   end
@@ -74,6 +76,12 @@ module Schemata
   class NumberProperty < Property
     def contents
       { "type" => "number", "required" => true }
+    end
+  end
+
+  class BooleanProperty < Property
+    def contents
+      { "type" => "boolean", "required" => true }
     end
   end
 end
