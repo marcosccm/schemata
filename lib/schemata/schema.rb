@@ -17,7 +17,7 @@ module Schemata
     private
 
     def parse_json(raw)
-      return {} if raw.nil?
+      return {} if raw.nil? || raw.empty?
       JSON.load(raw)
     end
   end
