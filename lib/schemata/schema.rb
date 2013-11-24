@@ -7,11 +7,18 @@ module Schemata
     end
 
     def initialize(raw_json)
-      @json = JSON.load(raw_json)
+      @json = parse_json raw_json
     end
 
     def generate
       Property.for(json).to_json
+    end
+
+    private
+
+    def parse_json(raw)
+      return {} if raw.nil?
+      JSON.load(raw)
     end
   end
 
