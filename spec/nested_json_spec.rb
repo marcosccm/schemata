@@ -37,7 +37,8 @@ module Schemata
               }
             }
           }
-        }
+        },
+        "$schema" => "http://json-schema.org/draft-03/schema"
       }.to_json
     end
 

@@ -44,7 +44,8 @@ module Schemata
             "type" => "boolean",
             "required" => true
           }
-        }
+        },
+        "$schema" => "http://json-schema.org/draft-03/schema"
       }.to_json
     end
 

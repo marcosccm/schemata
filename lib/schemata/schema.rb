@@ -11,10 +11,18 @@ module Schemata
     end
 
     def generate
-      Property.for(json).to_json
+      schema_properties.merge(boilerplate).to_json
     end
 
     private
+
+    def schema_properties
+      Property.for(json)
+    end
+
+    def boilerplate
+      { "$schema" => "http://json-schema.org/draft-03/schema" }
+    end
 
     def parse_json(raw)
       return {} if raw.nil? || raw.empty?
